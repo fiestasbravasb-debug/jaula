@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¡La Jaula! – Carta</title>
+<style>
+  :root{
+    --bg:#0f1f3d; --gold:#e8d9a0; --orange:#f08a2c; --line:#c9b46a; --green:#2f6b34;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#07101f;font-family:"Montserrat","Segoe UI",Arial,sans-serif;color:var(--gold);padding:24px 12px}
+  .page{
+    max-width:640px;margin:0 auto 32px;background:var(--bg);
+    border:2px solid var(--line);outline:6px solid var(--bg);
+    padding:28px 26px 36px;position:relative;overflow:hidden;
+  }
+  .page::before,.page::after{
+    content:"🌿";position:absolute;font-size:64px;opacity:.55;
+  }
+  .page::before{top:-6px;left:-4px}
+  .page::after{top:-6px;right:-4px;transform:scaleX(-1)}
+  .logo{text-align:center;margin:10px 0 26px;font-weight:900;letter-spacing:1px;
+    color:var(--orange);font-size:54px;line-height:.9;text-transform:uppercase}
+  .logo .star{font-size:22px;vertical-align:middle;margin:0 10px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  @media(max-width:520px){.cols{grid-template-columns:1fr}}
+  h2{margin:18px 0 8px;font-size:24px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+  .row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:3px 0;text-transform:uppercase}
+  .row span:last-child{white-space:nowrap}
+  .promo-title{
+    background:var(--gold);color:var(--bg);text-align:center;font-weight:900;
+    font-size:30px;padding:6px 10px;border-radius:12px;margin:30px 0 4px;text-transform:uppercase
+  }
+  .valid{text-align:center;font-weight:700;font-size:13px;margin-bottom:16px;text-transform:uppercase}
+  .promos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .promo{
+    border:1px solid var(--orange);border-radius:14px;padding:14px;text-align:center;
+    display:flex;flex-direction:column;justify-content:center;min-height:110px
+  }
+  .promo small{display:block;font-size:10px;opacity:.7;text-transform:uppercase;margin-top:6px}
+  .promo .name{font-size:13px;text-transform:uppercase;color:var(--orange)}
+  .promo .big{font-size:40px;font-weight:900;color:var(--orange);line-height:1.1}
+  .promo.small .big{font-size:30px}
+  .note{font-size:9px;opacity:.7;text-transform:uppercase}
+  .footer{text-align:center;margin-top:30px;font-style:italic;font-size:26px;font-family:Georgia,serif}
+</style>
+</head>
+<body>
+
+<!-- PÁGINA 1 -->
+<section class="page">
+  <div class="logo"><span class="star">★</span>¡La<br>Jaula!<span class="star">★</span></div>
+
+  <div class="cols">
+    <div>
+      <h2>Complementos</h2>
+      <div class="row"><span>Cigarro</span><span>S/2.5</span></div>
+      <div class="row"><span>Agua</span><span>S/5</span></div>
+      <div class="row"><span>Guaraná</span><span>S/5</span></div>
+      <div class="row"><span>Coca Cola 600 ml</span><span>S/7</span></div>
+      <div class="row"><span>Coca Cola 1 LT</span><span>S/10</span></div>
+      <div class="row"><span>Agua Tonic Britvid</span><span>S/10</span></div>
+      <div class="row"><span>Evervess 1.5 LT</span><span>S/15</span></div>
+      <div class="row"><span>Red Bull</span><span>S/15</span></div>
+      <div class="row"><span>Jugo de naranja</span><span>S/15</span></div>
+    </div>
+    <div>
+      <h2>Infaltables</h2>
+      <div class="row"><span>Smirnoff</span><span>S/15</span></div>
+      <div class="row"><span>Antioqueño</span><span>S/100</span></div>
+      <div class="row"><span>Vodka Absolut</span><span>S/150</span></div>
+      <div class="row"><span>Riccaddona</span><span>S/250</span></div>
+      <div class="row"><span>Jägermeister</span><span>S/180</span></div>
+      <div class="row"><span>Baileys Imperial</span><span>S/200</span></div>
+      <div class="row"><span>Moët y Chandon</span><span>S/800</span></div>
+    </div>
+  </div>
+
+  <div class="promo-title">¡Promos La Facu!</div>
+  <div class="valid">*Válido hasta la 1*</div>
+
+  <div class="promos">
+    <div class="promo">
+      <div class="name">Flor de Caña<br>4 años</div>
+      <div class="big">2x1</div>
+      <small>Incluye Coca de 1 LT + hielo</small>
+    </div>
+    <div class="promo">
+      <div class="name">02 Beefeater<br>x</div>
+      <div class="big">300</div>
+      <small>Incluye Evervess + hielo</small>
+    </div>
+    <div class="promo small">
+      <div class="name">Cerveza<br>San Juan</div>
+      <div class="big">S/10</div>
+    </div>
+    <div class="promo small">
+      <div class="name">Smirnoff<br>Ice</div>
+      <div class="big">S/10</div>
+    </div>
+  </div>
+</section>
+
+<!-- PÁGINA 2 -->
+<section class="page">
+  <div class="logo"><span class="star">★</span>¡La<br>Jaula!<span class="star">★</span></div>
+
+  <div class="cols">
+    <div>
+      <h2>Whisky</h2>
+      <div class="row"><span>JW Red Label</span><span>S/150</span></div>
+      <div class="row"><span>JW Black</span><span>S/280</span></div>
+      <div class="row"><span>JW Double Black</span><span>S/350</span></div>
+      <div class="row"><span>Buchanan's</span><span>S/350</span></div>
+      <div class="row"><span>Jack Daniel's</span><span>S/350</span></div>
+      <div class="row"><span>JW Gold Label</span><span>S/550</span></div>
+      <div class="row"><span>JW Green Label</span><span>S/700</span></div>
+      <div class="row"><span>JW Blue Label</span><span>S/2000</span></div>
+      <div class="row"><span>JW King George</span><span>S/4000</span></div>
+
+      <h2>Pisco</h2>
+      <div class="row"><span>Pisco Botija</span><span>S/130</span></div>
+      <div class="row"><span>Pisco 4 Gallos</span><span>S/160</span></div>
+      <div class="row"><span>Pisco Portón</span><span>S/250</span></div>
+
+      <h2>Gin</h2>
+      <div class="row"><span>Beefeater</span><span>S/200</span></div>
+      <div class="row"><span>Beefeater Pink</span><span>S/250</span></div>
+      <div class="row"><span>Tanqueray</span><span>S/280</span></div>
+      <div class="row"><span>Hendrick's</span><span>S/350</span></div>
+    </div>
+
+    <div>
+      <h2>Ron</h2>
+      <div class="row"><span>Flor de Caña 4 años</span><span>S/160</span></div>
+      <div class="row"><span>Flor de Caña 12 años</span><span>S/350</span></div>
+      <div class="row"><span>Flor de Caña 18 años</span><span>S/600</span></div>
+      <div class="row"><span>Flor de Caña 25 años</span><span>S/1350</span></div>
+
+      <h2>Tequila</h2>
+      <div class="row"><span>José Cuervo</span><span>S/180</span></div>
+      <div class="row"><span>Tequila 1800</span><span>S/250</span></div>
+      <div class="row"><span>Kick the Rules</span><span>S/350</span></div>
+      <div class="row"><span>1800 Cristalino</span><span>S/550</span></div>
+      <div class="row"><span>Don Julio Reposado</span><span>S/600</span></div>
+      <div class="row"><span>Don Julio 1942</span><span>S/2000</span></div>
+
+      <h2>Cerveza</h2>
+      <div class="row"><span>Pilsen</span><span>S/10</span></div>
+      <div class="row"><span>Cusqueña Trigo</span><span>S/10</span></div>
+      <div class="row"><span>San Juan</span><span>S/15</span></div>
+      <div class="row"><span>Corona</span><span>S/15</span></div>
+      <div class="row"><span>Dorcher Artesanal<br><span class="note">(Trigo-Cranberry-Pilsener-Dunkel)</span></span><span>S/15</span></div>
+    </div>
+  </div>
+
+  <div class="footer">Ron Flor de Caña</div>
+</section>
+
+</body>
+</html>
