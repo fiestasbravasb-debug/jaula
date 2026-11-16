@@ -1,162 +1,937 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>¡La Jaula! – Carta</title>
+<!-- =====================  CONFIGURACIÓN  =====================
+  Pega entre las comillas el enlace de tu hoja de Google de la Carta La Jaula.
+  Sirve el enlace normal de "Compartir" (con acceso "Cualquier persona
+  que tenga el enlace") o el de "Publicar en la Web".
+  Si lo dejas vacío, la carta se lee del archivo carta.csv.
+============================================================== -->
+<script>window.HOJA_DE_GOOGLE = "";</script>
+<title>La Jaula – Carta</title>
+<meta name="description" content="Carta y promos de La Jaula desde tu celular.">
+<meta property="og:title" content="La Jaula – Carta">
+<meta property="og:description" content="Carta y promos de La Jaula desde tu celular.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f1f3d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1f3d'/%3E%3Ctext x='32' y='47' font-family='Impact,Arial Narrow,sans-serif' font-size='42' text-anchor='middle' fill='%23f08a2c'%3EJ%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Barlow:wght@500;600;700&amp;family=Oswald:wght@500;600;700&amp;display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0f1f3d; --gold:#e8d9a0; --orange:#f08a2c; --line:#c9b46a; --green:#2f6b34;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:#07101f;font-family:"Montserrat","Segoe UI",Arial,sans-serif;color:var(--gold);padding:24px 12px}
-  .page{
-    max-width:640px;margin:0 auto 32px;background:var(--bg);
-    border:2px solid var(--line);outline:6px solid var(--bg);
-    padding:28px 26px 36px;position:relative;overflow:hidden;
-  }
-  .page::before,.page::after{
-    content:"🌿";position:absolute;font-size:64px;opacity:.55;
-  }
-  .page::before{top:-6px;left:-4px}
-  .page::after{top:-6px;right:-4px;transform:scaleX(-1)}
-  .logo{text-align:center;margin:10px 0 26px;font-weight:900;letter-spacing:1px;
-    color:var(--orange);font-size:54px;line-height:.9;text-transform:uppercase}
-  .logo .star{font-size:22px;vertical-align:middle;margin:0 10px}
-  .cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-  @media(max-width:520px){.cols{grid-template-columns:1fr}}
-  h2{margin:18px 0 8px;font-size:24px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
-  .row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:3px 0;text-transform:uppercase}
-  .row span:last-child{white-space:nowrap}
-  .promo-title{
-    background:var(--gold);color:var(--bg);text-align:center;font-weight:900;
-    font-size:30px;padding:6px 10px;border-radius:12px;margin:30px 0 4px;text-transform:uppercase
-  }
-  .valid{text-align:center;font-weight:700;font-size:13px;margin-bottom:16px;text-transform:uppercase}
-  .promos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .promo{
-    border:1px solid var(--orange);border-radius:14px;padding:14px;text-align:center;
-    display:flex;flex-direction:column;justify-content:center;min-height:110px
-  }
-  .promo small{display:block;font-size:10px;opacity:.7;text-transform:uppercase;margin-top:6px}
-  .promo .name{font-size:13px;text-transform:uppercase;color:var(--orange)}
-  .promo .big{font-size:40px;font-weight:900;color:var(--orange);line-height:1.1}
-  .promo.small .big{font-size:30px}
-  .note{font-size:9px;opacity:.7;text-transform:uppercase}
-  .footer{text-align:center;margin-top:30px;font-style:italic;font-size:26px;font-family:Georgia,serif}
+:root {
+  /* Carta La Jaula: azul noche, dorado y naranja, con hojas de selva, como la carta impresa */
+  --fondo: #0f1f3d;
+  --carta: #172f5a;
+  --linea: rgba(232, 217, 160, .07);
+  --oro: #e8d9a0;
+  --gris: #b4aa84;
+  --naranja: #f08a2c;
+  --verde: #2f6b34;
+  --titular: "Oswald", "TeX Gyre Heros Cn", "Avenir Next Condensed", "Arial Narrow", "Roboto Condensed", sans-serif-condensed, Impact, sans-serif;
+  --slab: "Anton", Impact, "Arial Narrow Bold", "Arial Black", sans-serif;
+  --texto: "Barlow", "Segoe UI", Roboto, system-ui, sans-serif;
+  --barra: 3.9rem;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; background: var(--fondo); }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--oro);
+  font-family: var(--texto);
+  font-size: 1.0625rem;
+  line-height: 1.4;
+  background-color: var(--fondo);
+  background-image:
+    radial-gradient(110% 55% at 12% 0%, rgba(47, 107, 52, .35), transparent 62%),
+    radial-gradient(90% 45% at 92% 100%, rgba(47, 107, 52, .3), transparent 60%),
+    linear-gradient(var(--linea) 1px, transparent 1px),
+    linear-gradient(90deg, var(--linea) 1px, transparent 1px);
+  background-size: auto, auto, 22px 22px, 22px 22px;
+}
+.pagina { max-width: 34rem; margin: 0 auto; padding: 0 1.25rem 2.5rem; }
+
+/* Rótulo de papel rasgado (títulos), en dorado como las etiquetas de la carta */
+.rotulo {
+  display: inline-block;
+  padding: .18em .75em .08em;
+  background-color: var(--oro);
+  color: var(--fondo);
+  clip-path: polygon(0 7%, 5% 0, 13% 5%, 24% 1%, 36% 6%, 49% 0, 61% 5%, 73% 1%, 86% 6%, 96% 0, 100% 9%, 98.5% 50%, 100% 91%, 95% 100%, 83% 95%, 71% 100%, 58% 94%, 45% 100%, 32% 95%, 19% 100%, 7% 94%, 0 100%, 1.5% 50%);
+}
+
+/* Encabezado */
+.cabecera { position: relative; padding: 1.75rem 0 1.1rem; text-align: center; }
+.cabecera::before, .cabecera::after {
+  content: "🌿";
+  position: absolute;
+  top: .4rem;
+  font-size: 3.4rem;
+  line-height: 1;
+  opacity: .55;
+  pointer-events: none;
+}
+.cabecera::before { left: -.6rem; }
+.cabecera::after { right: -.6rem; transform: scaleX(-1); }
+.logo { display: block; width: min(13.5rem, 64%); height: auto; margin: 0 auto .5rem; }
+.cabecera h1 { margin: 0; font-weight: 400; filter: drop-shadow(0 3px 2px rgba(0, 0, 0, .45)); }
+.cabecera h1 .rotulo {
+  padding: 0;
+  background: none;
+  clip-path: none;
+  color: var(--naranja);
+  transform: rotate(-2deg);
+  font-family: var(--slab);
+  font-size: clamp(2.6rem, 14vw, 3.9rem);
+  letter-spacing: .02em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.cabecera h1 .rotulo::before, .cabecera h1 .rotulo::after {
+  content: "★";
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 .3em;
+  font-size: .42em;
+}
+.fecha {
+  margin: .75rem 0 0;
+  font-family: var(--titular);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gris);
+  text-wrap: balance;
+}
+
+/* Barra de categorías */
+.categorias { position: sticky; top: 0; z-index: 5; margin: 0 -1.25rem; background: rgba(15, 31, 61, .97); border-bottom: 2px solid var(--oro); }
+.chips {
+  display: flex;
+  gap: .55rem;
+  overflow-x: auto;
+  padding: .7rem 1.25rem .8rem;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: .1rem 1rem 0;
+  border: 2px solid var(--oro);
+  border-radius: 999px;
+  background: var(--carta);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, .5);
+  color: var(--oro);
+  font-family: var(--titular);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.chip[aria-current="true"] { background: var(--oro); color: var(--fondo); }
+.chip-promo { border-color: var(--naranja); box-shadow: 2px 2px 0 var(--naranja); color: var(--naranja); }
+.chip-promo::before { content: "🔥"; margin-right: .3rem; font-size: .9em; }
+.chip-promo[aria-current="true"] { background: var(--naranja); color: var(--fondo); }
+.chip:focus-visible { outline: 3px solid var(--naranja); outline-offset: 2px; }
+
+/* Estados */
+.estado { margin: 2rem 0 0; color: var(--gris); text-align: center; }
+.estado p { margin: 0 auto; max-width: 30ch; }
+.reintentar {
+  margin-top: 1rem;
+  min-height: 2.75rem;
+  padding: .1rem 1.4rem 0;
+  border: 2px solid var(--oro);
+  border-radius: 999px;
+  background: var(--oro);
+  color: var(--fondo);
+  font-family: var(--titular);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  cursor: pointer;
+}
+.reintentar:focus-visible { outline: 3px solid var(--naranja); outline-offset: 3px; }
+.aviso {
+  margin: 1.25rem 0 0;
+  padding: .75rem 1rem;
+  border: 2px solid var(--naranja);
+  border-radius: .5rem;
+  background: var(--carta);
+  font-size: .9375rem;
+}
+
+/* Secciones y productos */
+.seccion { padding-top: 2rem; scroll-margin-top: var(--barra); }
+.seccion h2 { margin: 0 0 1rem; font-weight: 400; filter: drop-shadow(0 3px 2px rgba(0, 0, 0, .45)); }
+.seccion h2 .rotulo {
+  font-family: var(--titular);
+  font-size: 2.05rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  line-height: 1;
+  text-transform: uppercase;
+  transform: rotate(-1.5deg);
+}
+.seccion:nth-of-type(even) h2 .rotulo { transform: rotate(1.2deg); }
+.items { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+.fila { display: flex; align-items: baseline; gap: .5rem; }
+.nombre {
+  font-family: var(--titular);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+.puntos {
+  flex: 1 1 1rem;
+  min-width: 1rem;
+  border-bottom: 2px dotted rgba(232, 217, 160, .35);
+  transform: translateY(-.3em);
+}
+.precio {
+  font-family: var(--titular);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: 1.1;
+  font-variant-numeric: lining-nums tabular-nums;
+  white-space: nowrap;
+}
+.desc { display: block; margin-top: .1rem; font-size: .95rem; font-weight: 500; color: var(--gris); }
+.agotado .nombre { opacity: .45; text-decoration: line-through; text-decoration-color: var(--naranja); }
+.agotado .precio { font-size: 1.05rem; letter-spacing: .1em; color: var(--naranja); }
+.item.con-foto { display: grid; grid-template-columns: 4.25rem minmax(0, 1fr); gap: .9rem; align-items: center; }
+.foto {
+  display: block;
+  width: 4.25rem;
+  height: 4.25rem;
+  object-fit: contain;
+  padding: .25rem;
+  border: 2px solid var(--oro);
+  border-radius: .6rem;
+  background: #fff;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, .5);
+  transform: rotate(-2deg);
+}
+.item:nth-child(even) .foto { transform: rotate(1.5deg); }
+.agotado .foto { filter: grayscale(1); opacity: .5; }
+.banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 2;
+  object-fit: cover;
+  margin: 0 0 1rem;
+  border: 2px solid var(--oro);
+  border-radius: .6rem;
+  background: var(--carta);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, .5);
+}
+
+/* Promos con hora límite (columna "hasta") */
+.seccion.promo {
+  margin: 1.75rem -1.25rem 0;
+  padding: 1.5rem 1.25rem 1.75rem;
+  background: rgba(240, 138, 44, .08);
+  border-top: 3px dashed var(--naranja);
+  border-bottom: 3px dashed var(--naranja);
+}
+.promo h2 { filter: none; }
+.promo h2 .rotulo {
+  padding: 0;
+  background: none;
+  clip-path: none;
+  color: var(--naranja);
+  font-family: var(--slab);
+  font-size: clamp(2rem, 10.5vw, 3rem);
+  font-weight: 400;
+  letter-spacing: .01em;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, .45);
+  transform: rotate(-2deg);
+}
+.vigencia {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .15rem .6rem;
+  margin: 0 0 1.25rem;
+  padding: .45rem .8rem .4rem;
+  border: 2px solid var(--naranja);
+  border-radius: .5rem;
+  background: var(--carta);
+  box-shadow: 3px 3px 0 var(--naranja);
+  color: var(--naranja);
+  font-family: var(--slab);
+  font-size: .95rem;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+.vigencia .cuenta {
+  color: var(--oro);
+  font-family: var(--titular);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  line-height: 1.1;
+}
+.vigencia.urgente { background: var(--naranja); color: var(--fondo); box-shadow: 3px 3px 0 rgba(0, 0, 0, .5); animation: latido 1.3s ease-in-out infinite; }
+.vigencia.urgente .cuenta { color: var(--fondo); }
+@keyframes latido { 50% { transform: scale(1.025); } }
+.promo .items { gap: 1.1rem; }
+.promo .item {
+  padding: .8rem .9rem .85rem;
+  border: 2px solid var(--oro);
+  border-radius: .75rem;
+  background: var(--carta);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, .5);
+  transform: rotate(-.6deg);
+}
+.promo .item:nth-child(even) { transform: rotate(.5deg); }
+.promo .nombre { font-size: 1.5rem; }
+.promo .precio { color: var(--naranja); font-size: 1.7rem; }
+.precio.oferta {
+  align-self: center;
+  padding: .12em .45em .02em;
+  border-radius: .35rem;
+  background: var(--naranja);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, .5);
+  color: var(--fondo);
+  font-family: var(--slab);
+  font-weight: 400;
+  font-size: 1.45rem;
+  letter-spacing: .03em;
+  text-align: center;
+  transform: rotate(-3deg);
+}
+.promo .precio.oferta { color: var(--fondo); }
+.precio.oferta small { display: block; font-family: var(--titular); font-size: .8em; font-weight: 600; letter-spacing: .04em; }
+.promo .puntos { opacity: .6; }
+
+/* Promo terminada: queda al final, en gris y con sello */
+.seccion.promo.terminada { background: rgba(255, 255, 255, .03); border-color: var(--gris); }
+.terminada h2 { position: relative; }
+.terminada h2 .rotulo { color: var(--gris); }
+.terminada h2::after {
+  content: "Terminó";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  padding: .1em .45em 0;
+  border: 3px solid var(--naranja);
+  border-radius: .3rem;
+  color: var(--naranja);
+  font-family: var(--slab);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  transform: translateY(-50%) rotate(-12deg);
+  background: rgba(15, 31, 61, .85);
+}
+.terminada .vigencia { border-color: var(--gris); box-shadow: 3px 3px 0 var(--gris); color: var(--gris); animation: none; background: var(--carta); }
+.terminada .item { border-color: var(--gris); box-shadow: 4px 4px 0 var(--gris); opacity: .6; filter: grayscale(1); }
+.terminada .precio { text-decoration: line-through; }
+
+/* Categoría destacada (columna "destacar"), sobre fondo de selva */
+.seccion.destacada {
+  margin: 1.75rem -1.25rem 0;
+  padding: 1.5rem 1.25rem 1.75rem;
+  background: linear-gradient(135deg, #1b4d2b 0%, var(--verde) 55%, #1b4d2b 100%);
+}
+.destacada h2 .rotulo { transform: rotate(-2.5deg); }
+.destacada .items {
+  padding: .9rem 1rem;
+  border: 2px solid var(--oro);
+  border-radius: .75rem;
+  background: var(--carta);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, .5);
+}
+.destacada .precio { color: var(--naranja); font-family: var(--slab); font-weight: 400; font-size: 1.8rem; }
+
+/* Pie */
+.pie {
+  margin-top: 3rem;
+  display: grid;
+  gap: .3rem;
+  justify-items: center;
+  text-align: center;
+  color: var(--gris);
+  font-size: .875rem;
+}
+.pie p { margin: 0; max-width: 34ch; }
+.pie .marca { font-family: var(--slab); font-size: 1.9rem; letter-spacing: .04em; line-height: 1; color: var(--naranja); text-transform: uppercase; }
+.pie .lema { margin-bottom: .5rem; font-family: var(--titular); font-size: 1rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--oro); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+  .vigencia.urgente { animation: none; }
+}
 </style>
 </head>
 <body>
+<div class="pagina">
+<header class="cabecera">
+<img class="logo" src="img/logo-jaula.png" alt="La Jaula" width="451" height="316" onerror="this.remove()">
+<h1><span class="rotulo">¡La Jaula!</span></h1>
+<p class="fecha" id="fecha"></p>
+</header>
+<nav class="categorias" aria-label="Categorías de la carta" hidden><div class="chips"></div></nav>
+<div class="estado" id="estado" role="status" aria-live="polite">Cargando carta…</div>
+<div class="aviso" id="aviso" role="status" hidden></div>
+<main id="carta"></main>
+<noscript><p class="estado">Para ver la carta activa JavaScript, o pide la carta impresa en barra.</p></noscript>
+<footer class="pie">
+<p class="marca">¡La Jaula!</p>
+<p class="lema">Ron Flor de Caña</p>
+<p>Prohibida la venta de bebidas alcohólicas a menores de 18 años.</p>
+<p>Tomar bebidas alcohólicas en exceso es dañino.</p>
+</footer>
+</div>
+<script>
+(function () {
+  'use strict';
 
-<!-- PÁGINA 1 -->
-<section class="page">
-  <div class="logo"><span class="star">★</span>¡La<br>Jaula!<span class="star">★</span></div>
+  var RESPALDO = 'carta.csv';
+  var ESPERA_MS = 8000;
+  var SI = ['si', 'x', '1', 'true', 'yes'];
+  var NO = ['no', 'agotado', 'n', 'false', '0'];
+  var ALIAS = {
+    categoria: ['categoria', 'categorias', 'seccion', 'tipo'],
+    producto: ['producto', 'productos', 'nombre', 'bebida'],
+    detalle: ['detalle', 'descripcion', 'nota', 'presentacion'],
+    precio: ['precio', 'precios', 'precio (s/)', 'costo', 'valor'],
+    disponible: ['disponible', 'stock'],
+    destacar: ['destacar', 'destacada', 'destacado', 'recuadro'],
+    imagen: ['imagen', 'imagenes', 'foto', 'fotos', 'image', 'img'],
+    banner: ['banner', 'portada', 'imagen categoria', 'imagen de categoria', 'foto categoria'],
+    oferta: ['oferta', 'promo', 'promocion', 'precio promo', 'precio promocion'],
+    hasta: ['hasta', 'valido hasta', 'hora limite', 'hora', 'vence', 'hasta las']
+  };
+  var POSICIONES = { categoria: 0, producto: 1, detalle: 2, precio: 3, disponible: 4, destacar: 5 };
+  var AVISO_RESPALDO = 'No se pudo cargar la carta actualizada. Se muestra la última versión guardada: confirma los precios en barra.';
 
-  <div class="cols">
-    <div>
-      <h2>Complementos</h2>
-      <div class="row"><span>Cigarro</span><span>S/2.5</span></div>
-      <div class="row"><span>Agua</span><span>S/5</span></div>
-      <div class="row"><span>Guaraná</span><span>S/5</span></div>
-      <div class="row"><span>Coca Cola 600 ml</span><span>S/7</span></div>
-      <div class="row"><span>Coca Cola 1 LT</span><span>S/10</span></div>
-      <div class="row"><span>Agua Tonic Britvid</span><span>S/10</span></div>
-      <div class="row"><span>Evervess 1.5 LT</span><span>S/15</span></div>
-      <div class="row"><span>Red Bull</span><span>S/15</span></div>
-      <div class="row"><span>Jugo de naranja</span><span>S/15</span></div>
-    </div>
-    <div>
-      <h2>Infaltables</h2>
-      <div class="row"><span>Smirnoff</span><span>S/15</span></div>
-      <div class="row"><span>Antioqueño</span><span>S/100</span></div>
-      <div class="row"><span>Vodka Absolut</span><span>S/150</span></div>
-      <div class="row"><span>Riccaddona</span><span>S/250</span></div>
-      <div class="row"><span>Jägermeister</span><span>S/180</span></div>
-      <div class="row"><span>Baileys Imperial</span><span>S/200</span></div>
-      <div class="row"><span>Moët y Chandon</span><span>S/800</span></div>
-    </div>
-  </div>
+  var nav = document.querySelector('.categorias');
+  var filaChips = nav.querySelector('.chips');
+  var principal = document.getElementById('carta');
+  var estado = document.getElementById('estado');
+  var aviso = document.getElementById('aviso');
+  var reducir = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
-  <div class="promo-title">¡Promos La Facu!</div>
-  <div class="valid">*Válido hasta la 1*</div>
+  /* ---------------- Lectura de datos ---------------- */
 
-  <div class="promos">
-    <div class="promo">
-      <div class="name">Flor de Caña<br>4 años</div>
-      <div class="big">2x1</div>
-      <small>Incluye Coca de 1 LT + hielo</small>
-    </div>
-    <div class="promo">
-      <div class="name">02 Beefeater<br>x</div>
-      <div class="big">300</div>
-      <small>Incluye Evervess + hielo</small>
-    </div>
-    <div class="promo small">
-      <div class="name">Cerveza<br>San Juan</div>
-      <div class="big">S/10</div>
-    </div>
-    <div class="promo small">
-      <div class="name">Smirnoff<br>Ice</div>
-      <div class="big">S/10</div>
-    </div>
-  </div>
-</section>
+  function normal(texto) {
+    var s = String(texto == null ? '' : texto);
+    if (s.normalize) s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    return s.trim().toLowerCase();
+  }
 
-<!-- PÁGINA 2 -->
-<section class="page">
-  <div class="logo"><span class="star">★</span>¡La<br>Jaula!<span class="star">★</span></div>
+  // CSV según RFC 4180: comillas, comillas dobles escapadas, saltos dentro de comillas, CRLF y BOM.
+  // Detecta si el separador es coma o punto y coma (Excel en algunos idiomas usa ;).
+  function leerCSV(texto) {
+    texto = String(texto == null ? '' : texto).replace(/^\uFEFF/, '');
+    var primera = texto.split(/\r?\n/, 1)[0] || '';
+    var sep = primera.split(';').length > primera.split(',').length ? ';' : ',';
+    var filas = [], fila = [], campo = '', comillas = false;
+    for (var i = 0; i < texto.length; i++) {
+      var c = texto.charAt(i);
+      if (comillas) {
+        if (c === '"') {
+          if (texto.charAt(i + 1) === '"') { campo += '"'; i++; } else { comillas = false; }
+        } else { campo += c; }
+      } else if (c === '"' && campo === '') {
+        comillas = true;
+      } else if (c === sep) {
+        fila.push(campo); campo = '';
+      } else if (c === '\n' || c === '\r') {
+        if (c === '\r' && texto.charAt(i + 1) === '\n') i++;
+        fila.push(campo); filas.push(fila); fila = []; campo = '';
+      } else {
+        campo += c;
+      }
+    }
+    if (campo !== '' || fila.length) { fila.push(campo); filas.push(fila); }
+    return filas.filter(function (f) {
+      return f.some(function (v) { return String(v).trim() !== ''; });
+    });
+  }
 
-  <div class="cols">
-    <div>
-      <h2>Whisky</h2>
-      <div class="row"><span>JW Red Label</span><span>S/150</span></div>
-      <div class="row"><span>JW Black</span><span>S/280</span></div>
-      <div class="row"><span>JW Double Black</span><span>S/350</span></div>
-      <div class="row"><span>Buchanan's</span><span>S/350</span></div>
-      <div class="row"><span>Jack Daniel's</span><span>S/350</span></div>
-      <div class="row"><span>JW Gold Label</span><span>S/550</span></div>
-      <div class="row"><span>JW Green Label</span><span>S/700</span></div>
-      <div class="row"><span>JW Blue Label</span><span>S/2000</span></div>
-      <div class="row"><span>JW King George</span><span>S/4000</span></div>
+  function columnas(cabecera) {
+    var mapa = {};
+    (cabecera || []).forEach(function (titulo, i) {
+      var n = normal(titulo);
+      Object.keys(ALIAS).forEach(function (clave) {
+        if (mapa[clave] === undefined && ALIAS[clave].indexOf(n) !== -1) mapa[clave] = i;
+      });
+    });
+    return mapa.producto !== undefined && mapa.precio !== undefined ? mapa : null;
+  }
 
-      <h2>Pisco</h2>
-      <div class="row"><span>Pisco Botija</span><span>S/130</span></div>
-      <div class="row"><span>Pisco 4 Gallos</span><span>S/160</span></div>
-      <div class="row"><span>Pisco Portón</span><span>S/250</span></div>
+  // Acepta 160 · 160.00 · S/ 160 · 1,350 · 1,350.00 · 1.350 · 12,50. Otro texto (p. ej. "Consultar") se muestra tal cual.
+  function leerPrecio(texto) {
+    var t = String(texto == null ? '' : texto).trim();
+    if (!t) return null;
+    var s = t.replace(/s\/\.?/ig, '').replace(/soles?/ig, '').replace(/\s+/g, '');
+    if (!/^\d[\d.,]*$/.test(s)) return { texto: t };
+    var coma = s.lastIndexOf(','), punto = s.lastIndexOf('.');
+    if (coma !== -1 && punto !== -1) {
+      s = coma > punto ? s.replace(/\./g, '').replace(',', '.') : s.replace(/,/g, '');
+    } else if (coma !== -1) {
+      s = /^\d{1,3}(,\d{3})+$/.test(s) ? s.replace(/,/g, '') : s.replace(',', '.');
+    } else if (punto !== -1 && /^\d{1,3}(\.\d{3})+$/.test(s)) {
+      s = s.replace(/\./g, '');
+    }
+    var n = parseFloat(s);
+    return isNaN(n) ? { texto: t } : { valor: n };
+  }
 
-      <h2>Gin</h2>
-      <div class="row"><span>Beefeater</span><span>S/200</span></div>
-      <div class="row"><span>Beefeater Pink</span><span>S/250</span></div>
-      <div class="row"><span>Tanqueray</span><span>S/280</span></div>
-      <div class="row"><span>Hendrick's</span><span>S/350</span></div>
-    </div>
+  function textoPrecio(precio) {
+    if (!precio) return 'Consultar';
+    if (precio.texto) return precio.texto;
+    var v = precio.valor;
+    return 'S/ ' + (Math.round(v) === v ? String(v) : v.toFixed(2));
+  }
 
-    <div>
-      <h2>Ron</h2>
-      <div class="row"><span>Flor de Caña 4 años</span><span>S/160</span></div>
-      <div class="row"><span>Flor de Caña 12 años</span><span>S/350</span></div>
-      <div class="row"><span>Flor de Caña 18 años</span><span>S/600</span></div>
-      <div class="row"><span>Flor de Caña 25 años</span><span>S/1350</span></div>
+  function armarCarta(filas) {
+    if (!filas || !filas.length) return [];
+    var mapa = columnas(filas[0]);
+    var datos = mapa ? filas.slice(1) : filas;
+    mapa = mapa || POSICIONES;
+    var categorias = [], porNombre = {}, ultima = '';
+    datos.forEach(function (fila) {
+      function celda(clave) {
+        var i = mapa[clave];
+        return i === undefined || fila[i] == null ? '' : String(fila[i]).trim();
+      }
+      var nombreCategoria = celda('categoria') || ultima;
+      var producto = celda('producto');
+      if (!nombreCategoria || !producto) return;
+      ultima = nombreCategoria;
+      var clave = normal(nombreCategoria);
+      var cat = porNombre[clave];
+      if (!cat) {
+        cat = { nombre: nombreCategoria, destacada: false, hasta: null, items: [] };
+        porNombre[clave] = cat;
+        categorias.push(cat);
+      }
+      if (SI.indexOf(normal(celda('destacar'))) !== -1) cat.destacada = true;
+      if (!cat.banner && celda('banner')) cat.banner = urlImagen(celda('banner'));
+      if (!cat.hasta && celda('hasta')) cat.hasta = leerHora(celda('hasta'));
+      cat.items.push({
+        nombre: producto,
+        detalle: celda('detalle'),
+        precio: leerPrecio(celda('precio')),
+        oferta: celda('oferta'),
+        agotado: NO.indexOf(normal(celda('disponible'))) !== -1,
+        imagen: urlImagen(celda('imagen'))
+      });
+    });
+    return categorias;
+  }
 
-      <h2>Tequila</h2>
-      <div class="row"><span>José Cuervo</span><span>S/180</span></div>
-      <div class="row"><span>Tequila 1800</span><span>S/250</span></div>
-      <div class="row"><span>Kick the Rules</span><span>S/350</span></div>
-      <div class="row"><span>1800 Cristalino</span><span>S/550</span></div>
-      <div class="row"><span>Don Julio Reposado</span><span>S/600</span></div>
-      <div class="row"><span>Don Julio 1942</span><span>S/2000</span></div>
+  // Acepta 1:00 · 01:00 · 1:00:00 · 1 am · 1:00 a. m. · 11:30 pm · 23:30. Devuelve { h, m } o null.
+  function leerHora(texto) {
+    var t = normal(texto);
+    var m = /(\d{1,2})(?:\s*[:.h]\s*(\d{2}))?/.exec(t);
+    if (!m) return null;
+    var h = parseInt(m[1], 10), min = m[2] ? parseInt(m[2], 10) : 0;
+    if (/p\.?\s*m\b|p\.\s*m\./.test(t) && h < 12) h += 12;
+    if (/a\.?\s*m\b|a\.\s*m\./.test(t) && h === 12) h = 0;
+    return h > 23 || min > 59 ? null : { h: h, m: min };
+  }
 
-      <h2>Cerveza</h2>
-      <div class="row"><span>Pilsen</span><span>S/10</span></div>
-      <div class="row"><span>Cusqueña Trigo</span><span>S/10</span></div>
-      <div class="row"><span>San Juan</span><span>S/15</span></div>
-      <div class="row"><span>Corona</span><span>S/15</span></div>
-      <div class="row"><span>Dorcher Artesanal<br><span class="note">(Trigo-Cranberry-Pilsener-Dunkel)</span></span><span>S/15</span></div>
-    </div>
-  </div>
+  var REINICIO = 12 * 60;   // a las 12:00 del día empieza una nueva noche de promos
 
-  <div class="footer">Ron Flor de Caña</div>
-</section>
+  function minutosLima() {
+    var d = new Date(Date.now() - 5 * 3600000);
+    return d.getUTCHours() * 60 + d.getUTCMinutes() + d.getUTCSeconds() / 60;
+  }
 
+  function estadoPromo(hasta) {
+    var ahora = (minutosLima() - REINICIO + 1440) % 1440;
+    var limite = (hasta.h * 60 + hasta.m - REINICIO + 1440) % 1440 || 1440;
+    return ahora < limite ? { activa: true, quedan: limite - ahora } : { activa: false, quedan: 0 };
+  }
+
+  function textoHora(hora) {
+    var h12 = hora.h % 12 || 12;
+    return (h12 === 1 ? 'la ' : 'las ') + h12 + ':' + (hora.m < 10 ? '0' : '') + hora.m + (hora.h < 12 ? ' a. m.' : ' p. m.');
+  }
+
+  function textoQuedan(minutos) {
+    var total = Math.max(1, Math.ceil(minutos)), h = Math.floor(total / 60), m = total % 60;
+    return h ? h + ' h' + (m ? ' ' + m + ' min' : '') : m + ' min';
+  }
+
+  // Actualiza las secciones de promo según la hora de Lima (se llama cada 15 segundos).
+  var promos = [], relojPromos = null;
+  function actualizarPromos() {
+    promos.forEach(function (p) {
+      var e = estadoPromo(p.hasta);
+      p.seccion.classList.toggle('terminada', !e.activa);
+      if (p.chip) p.chip.classList.toggle('chip-promo', e.activa);
+      p.vigencia.classList.toggle('urgente', e.activa && e.quedan <= 60);
+      p.hora.textContent = (e.activa ? 'Válido hasta ' : 'Terminó a ') + textoHora(p.hasta);
+      p.cuenta.textContent = e.activa && e.quedan <= 360 ? (e.quedan <= 60 ? '¡Últimos ' + textoQuedan(e.quedan) + '!' : 'Termina en ' + textoQuedan(e.quedan)) : '';
+      p.cuenta.hidden = !p.cuenta.textContent;
+    });
+  }
+
+  // Acepta img/foto.jpg (subida a GitHub), un enlace directo https://... o un enlace de Google Drive.
+  function urlImagen(texto) {
+    var t = String(texto == null ? '' : texto).trim();
+    if (!t) return '';
+    var drive = /drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([a-zA-Z0-9_-]{20,})/.exec(t);
+    if (drive) return 'https://drive.google.com/thumbnail?id=' + drive[1] + '&sz=w400';
+    return t;
+  }
+
+  function totalProductos(categorias) {
+    return categorias.reduce(function (n, c) { return n + c.items.length; }, 0);
+  }
+
+  // Respuesta del servicio de Google (gviz) a filas, como si fuera un CSV.
+  function tablaAFilas(tabla) {
+    var filas = [(tabla.cols || []).map(function (c) { return (c && c.label) || ''; })];
+    (tabla.rows || []).forEach(function (r) {
+      filas.push((r && r.c ? r.c : []).map(function (c) {
+        if (!c) return '';
+        if (c.f != null) return String(c.f);
+        return c.v == null ? '' : String(c.v);
+      }));
+    });
+    return filas;
+  }
+
+  /* ---------------- Fuentes de la carta ---------------- */
+
+  // Convierte el enlace pegado en la configuración en las direcciones que se intentan, en orden.
+  function intentosDeHoja(enlace) {
+    enlace = String(enlace || '').trim();
+    if (!enlace) return [];
+    var gid = /[#&?]gid=(\d+)/.exec(enlace);
+    if (/\/spreadsheets\/d\/e\//.test(enlace)) {
+      var pub = enlace.replace(/\/pubhtml/, '/pub').replace(/#.*$/, '');
+      if (!/[?&]output=csv/.test(pub)) pub += (pub.indexOf('?') === -1 ? '?' : '&') + 'output=csv';
+      return [{ tipo: 'csv', url: pub }];
+    }
+    var id = /\/spreadsheets\/d\/([a-zA-Z0-9_-]{20,})/.exec(enlace);
+    if (id) {
+      var base = 'https://docs.google.com/spreadsheets/d/' + id[1] + '/gviz/tq?headers=1' + (gid ? '&gid=' + gid[1] : '');
+      return [
+        { tipo: 'csv', url: base + '&tqx=out:csv' },
+        { tipo: 'jsonp', url: base }
+      ];
+    }
+    return [{ tipo: 'csv', url: enlace }];
+  }
+
+  function traerTexto(url, cache) {
+    return new Promise(function (resolve, reject) {
+      var control = window.AbortController ? new AbortController() : null;
+      var reloj = setTimeout(function () {
+        if (control) control.abort();
+        reject(new Error('Tiempo de espera agotado'));
+      }, ESPERA_MS);
+      fetch(url, { cache: cache || 'no-store', signal: control ? control.signal : undefined })
+        .then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.text();
+        })
+        .then(function (t) { clearTimeout(reloj); resolve(t); },
+              function (e) { clearTimeout(reloj); reject(e); });
+    });
+  }
+
+  // JSONP: carga la hoja como script, así no depende de permisos CORS.
+  var contadorJsonp = 0;
+  function traerJSONP(url) {
+    return new Promise(function (resolve, reject) {
+      var nombre = '__cartaHoja' + (++contadorJsonp);
+      var script = document.createElement('script');
+      var reloj;
+      function limpiar() {
+        clearTimeout(reloj);
+        window[nombre] = function () {};
+        if (script.parentNode) script.parentNode.removeChild(script);
+      }
+      window[nombre] = function (respuesta) {
+        limpiar();
+        if (!respuesta || respuesta.status === 'error' || !respuesta.table) {
+          reject(new Error('La hoja respondió con un error'));
+          return;
+        }
+        resolve(tablaAFilas(respuesta.table));
+      };
+      script.onerror = function () { limpiar(); reject(new Error('No se pudo cargar la hoja')); };
+      reloj = setTimeout(function () { limpiar(); reject(new Error('Tiempo de espera agotado')); }, ESPERA_MS);
+      script.src = url + (url.indexOf('?') === -1 ? '?' : '&') + 'tqx=' +
+        encodeURIComponent('out:json;responseHandler:' + nombre);
+      document.head.appendChild(script);
+    });
+  }
+
+  function leerIntento(intento) {
+    var filas = intento.tipo === 'jsonp'
+      ? traerJSONP(intento.url)
+      : traerTexto(intento.url, intento.cache).then(leerCSV);
+    return filas.then(function (f) {
+      var categorias = armarCarta(f);
+      if (!totalProductos(categorias)) throw new Error('La carta no tiene productos');
+      return categorias;
+    });
+  }
+
+  function primeroQueFuncione(intentos) {
+    return intentos.reduce(function (cadena, intento) {
+      return cadena.catch(function () { return leerIntento(intento); });
+    }, Promise.reject(new Error('Sin fuentes')));
+  }
+
+  /* ---------------- Pantalla ---------------- */
+
+  function crear(etiqueta, clase, texto) {
+    var el = document.createElement(etiqueta);
+    if (clase) el.className = clase;
+    if (texto != null) el.textContent = texto;
+    return el;
+  }
+
+  function slug(texto, usados) {
+    var base = normal(texto).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'seccion';
+    var id = base, n = 2;
+    while (usados[id]) id = base + '-' + (n++);
+    usados[id] = true;
+    return id;
+  }
+
+  function pintar(categorias) {
+    var usados = { carta: true, estado: true, aviso: true };
+    principal.textContent = '';
+    filaChips.textContent = '';
+    promos = [];
+    var terminadas = function (c) { return !!c.hasta && !estadoPromo(c.hasta).activa; };
+    categorias = categorias.filter(function (c) { return !terminadas(c); }).concat(categorias.filter(terminadas));
+    categorias.forEach(function (cat) {
+      var id = slug(cat.nombre, usados);
+      var chip = crear('a', 'chip', cat.nombre);
+      chip.href = '#' + id;
+      chip.setAttribute('data-destino', id);
+      filaChips.appendChild(chip);
+
+      var seccion = crear('section', 'seccion' + (cat.hasta ? ' promo' : cat.destacada ? ' destacada' : ''));
+      seccion.id = id;
+      seccion.setAttribute('aria-labelledby', 't-' + id);
+      var titulo = crear('h2');
+      titulo.appendChild(crear('span', 'rotulo', cat.nombre));
+      titulo.id = 't-' + id;
+      seccion.appendChild(titulo);
+      if (cat.hasta) {
+        var vigencia = crear('p', 'vigencia');
+        vigencia.setAttribute('role', 'status');
+        var hora = crear('span', 'hora'), cuenta = crear('span', 'cuenta');
+        vigencia.appendChild(hora);
+        vigencia.appendChild(cuenta);
+        seccion.appendChild(vigencia);
+        promos.push({ hasta: cat.hasta, seccion: seccion, chip: chip, vigencia: vigencia, hora: hora, cuenta: cuenta });
+      }
+      if (cat.banner) {
+        var banner = crear('img', 'banner');
+        banner.alt = '';
+        banner.loading = 'lazy';
+        banner.decoding = 'async';
+        banner.width = 1200;
+        banner.height = 480;
+        banner.addEventListener('error', function () { if (banner.parentNode) banner.parentNode.removeChild(banner); });
+        banner.src = cat.banner;
+        seccion.appendChild(banner);
+      }
+      var lista = crear('ul', 'items');
+      cat.items.forEach(function (it) {
+        var li = crear('li', it.agotado ? 'item agotado' : 'item');
+        var contenido = li;
+        if (it.imagen) {
+          li.className += ' con-foto';
+          var foto = crear('img', 'foto');
+          foto.alt = '';
+          foto.loading = 'lazy';
+          foto.decoding = 'async';
+          foto.width = 64;
+          foto.height = 64;
+          foto.addEventListener('error', function () {
+            li.classList.remove('con-foto');
+            if (foto.parentNode) foto.parentNode.removeChild(foto);
+          });
+          foto.src = it.imagen;
+          li.appendChild(foto);
+          contenido = crear('div', 'texto');
+          li.appendChild(contenido);
+        }
+        var fila = crear('div', 'fila');
+        fila.appendChild(crear('span', 'nombre', it.nombre));
+        var puntos = crear('span', 'puntos');
+        puntos.setAttribute('aria-hidden', 'true');
+        fila.appendChild(puntos);
+        var conOferta = !!it.oferta && !it.agotado;
+        var precio = crear('span', conOferta ? 'precio oferta' : 'precio',
+          it.agotado ? 'Agotado' : conOferta ? it.oferta : textoPrecio(it.precio));
+        if (conOferta && it.precio) precio.appendChild(crear('small', null, textoPrecio(it.precio)));
+        fila.appendChild(precio);
+        contenido.appendChild(fila);
+        if (it.detalle) contenido.appendChild(crear('span', 'desc', it.detalle));
+        lista.appendChild(li);
+      });
+      seccion.appendChild(lista);
+      principal.appendChild(seccion);
+    });
+    nav.hidden = categorias.length < 2;
+    actualizarPromos();
+    clearInterval(relojPromos);
+    if (promos.length) relojPromos = setInterval(actualizarPromos, 15000);
+    prepararNavegacion();
+    if (location.hash.length > 1) {
+      var destino = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (destino) destino.scrollIntoView();
+    }
+  }
+
+  function mostrarEstado(texto) {
+    estado.textContent = texto;
+    estado.hidden = false;
+  }
+
+  function ocultarEstado() {
+    estado.hidden = true;
+    estado.textContent = '';
+  }
+
+  function mostrarError() {
+    estado.textContent = '';
+    estado.appendChild(crear('p', null, 'No se pudo cargar la carta. Revisa tu conexión e inténtalo de nuevo, o pide la carta impresa en barra.'));
+    var boton = crear('button', 'reintentar', 'Reintentar');
+    boton.type = 'button';
+    boton.addEventListener('click', cargar);
+    estado.appendChild(boton);
+    estado.hidden = false;
+  }
+
+  /* ---------------- Barra de categorías ---------------- */
+
+  var chips = [], secciones = [], actual = null, bloqueo = 0, pendiente = false;
+
+  function centrarChip(chip) {
+    var izq = chip.offsetLeft - (filaChips.clientWidth - chip.offsetWidth) / 2;
+    try { filaChips.scrollTo({ left: izq, behavior: reducir ? 'auto' : 'smooth' }); }
+    catch (e) { filaChips.scrollLeft = izq; }
+  }
+
+  function activar(id) {
+    if (id === actual) return;
+    actual = id;
+    chips.forEach(function (c) {
+      if (c.getAttribute('data-destino') === id) {
+        c.setAttribute('aria-current', 'true');
+        centrarChip(c);
+      } else {
+        c.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function revisar() {
+    if (!secciones.length || nav.hidden || Date.now() < bloqueo) return;
+    var limite = nav.getBoundingClientRect().bottom + 24;
+    var id = secciones[0].id;
+    for (var i = 0; i < secciones.length; i++) {
+      if (secciones[i].getBoundingClientRect().top <= limite) id = secciones[i].id;
+    }
+    var raiz = document.documentElement;
+    if (window.scrollY > 0 && window.innerHeight + window.scrollY >= raiz.scrollHeight - 4) {
+      id = secciones[secciones.length - 1].id;
+    }
+    activar(id);
+  }
+
+  function prepararNavegacion() {
+    chips = Array.prototype.slice.call(filaChips.querySelectorAll('.chip'));
+    secciones = chips.map(function (c) { return document.getElementById(c.getAttribute('data-destino')); });
+    actual = null;
+    chips.forEach(function (c) {
+      c.addEventListener('click', function (ev) {
+        var destino = document.getElementById(c.getAttribute('data-destino'));
+        if (!destino) return;
+        ev.preventDefault();
+        bloqueo = Date.now() + 1200;
+        activar(destino.id);
+        destino.scrollIntoView({ behavior: reducir ? 'auto' : 'smooth', block: 'start' });
+        if (window.history && history.replaceState) history.replaceState(null, '', '#' + destino.id);
+      });
+    });
+    revisar();
+  }
+
+  window.addEventListener('scroll', function () {
+    if (pendiente) return;
+    pendiente = true;
+    requestAnimationFrame(function () { pendiente = false; revisar(); });
+  }, { passive: true });
+  window.addEventListener('scrollend', function () { bloqueo = 0; });
+
+  /* ---------------- Carga ---------------- */
+
+  function cargar() {
+    mostrarEstado('Cargando carta…');
+    aviso.hidden = true;
+    var hoja = intentosDeHoja(window.HOJA_DE_GOOGLE);
+    primeroQueFuncione(hoja)
+      .then(function (categorias) {
+        pintar(categorias);
+        ocultarEstado();
+      }, function () {
+        return primeroQueFuncione([{ tipo: 'csv', url: RESPALDO, cache: 'no-cache' }]).then(function (categorias) {
+          pintar(categorias);
+          ocultarEstado();
+          if (hoja.length) {
+            aviso.textContent = AVISO_RESPALDO;
+            aviso.hidden = false;
+          }
+        });
+      })
+      .catch(mostrarError);
+  }
+
+  // Para revisar desde la consola del navegador si algo falla.
+  window.CartaJaula = {
+    leerCSV: leerCSV, leerPrecio: leerPrecio, armarCarta: armarCarta, leerHora: leerHora,
+    estadoPromo: estadoPromo, actualizarPromos: actualizarPromos,
+    intentosDeHoja: intentosDeHoja, tablaAFilas: tablaAFilas, traerJSONP: traerJSONP, urlImagen: urlImagen, recargar: cargar
+  };
+
+  cargar();
+})();
+</script>
+<script>
+(function () {
+  var fecha = document.getElementById('fecha');
+  function mostrarFecha() {
+    var texto = new Date().toLocaleDateString('es-PE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Lima' });
+    fecha.textContent = texto.charAt(0).toUpperCase() + texto.slice(1);
+  }
+  mostrarFecha();
+  setInterval(mostrarFecha, 60000);
+})();
+</script>
 </body>
 </html>
